@@ -1,0 +1,17 @@
+services:
+  market-prediction:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: market-prediction:latest
+    container_name: market-prediction
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./results:/app/results
+    environment:
+      - TARGET=S&P 500
+      - SCHEDULE_TIME=08:30
+      - TIMEZONE=America/New_York
+      - DATABASE_URL=sqlite:////app/results/market_intelligence.db
+    restart: unless-stopped
