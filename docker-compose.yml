@@ -11,7 +11,7 @@ services:
       - ./results:/app/results
     environment:
       - TARGET=S&P 500
-      - SCHEDULE_TIME=08:30
+      - SCHEDULE_TIME=08:00
       - TIMEZONE=America/New_York
       - DATABASE_URL=sqlite:////app/results/market_intelligence.db
     restart: unless-stopped

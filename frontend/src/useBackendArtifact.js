@@ -72,8 +72,16 @@ export function useBackendArtifact() {
     }
 
     load();
+
+    // Auto-refresh the artifact every 5 minutes so when the new 8 AM report drops,
+    // the UI updates without requiring a manual page reload.
+    const timer = setInterval(() => {
+      load();
+    }, 300000);
+
     return () => {
       cancelled = true;
+      clearInterval(timer);
     };
   }, []);
 
